@@ -1,0 +1,65 @@
+:root {
+  color-scheme: light;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  background-image: url("./Buddy-A2/Desktop Background.jpg");
+  background-position: center;
+  background-size: cover;
+}
+
+.page {
+  min-height: 100vh;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 1rem;
+  padding: 2rem;
+}
+
+.eyebrow {
+  margin: 0;
+  color: #29241f;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+}
+
+.video-stage {
+  width: min(78vw, 960px);
+  overflow: hidden;
+  border: 1px solid rgba(15, 9, 4, 0.55);
+  box-shadow: 0 1.25rem 3.5rem rgba(41, 36, 31, 0.2);
+}
+
+video {
+  display: block;
+  width: 100%;
+  max-height: 72vh;
+}
+
+@media (max-width: 700px) {
+  body {
+    background-image: url("./Buddy-A2/Phone Backgroud.jpg");
+  }
+
+  .page {
+    gap: 0.75rem;
+    padding: 1rem;
+  }
+
+  .video-stage {
+    width: min(92vw, 540px);
+  }
+}
