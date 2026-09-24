@@ -14,7 +14,7 @@ body {
 }
 
 body {
-  background-image: url("./Buddy-A2/Desktop Background.jpg");
+  background-image: url("./Buddy-A2/desktop-background.jpg");
   background-position: center;
   background-size: cover;
 }
@@ -43,6 +43,18 @@ body {
   box-shadow: 0 1.25rem 3.5rem rgba(41, 36, 31, 0.2);
 }
 
+.laptop-player,
+.laptop-screen {
+  width: 100%;
+}
+
+.laptop-art,
+.feedback-art,
+.laptop-controls,
+.swipe-hint {
+  display: none;
+}
+
 video {
   display: block;
   width: 100%;
@@ -51,15 +63,158 @@ video {
 
 @media (max-width: 700px) {
   body {
-    background-image: url("./Buddy-A2/Phone Backgroud.jpg");
+    background-image: url("./Buddy-A2/mobile-background.jpg");
   }
 
   .page {
     gap: 0.75rem;
     padding: 1rem;
+    overflow: hidden;
   }
 
   .video-stage {
-    width: min(92vw, 540px);
+    width: min(112vw, 650px);
+    overflow: visible;
+    border: 0;
+    box-shadow: none;
+  }
+
+  .laptop-player {
+    position: relative;
+    aspect-ratio: 3508 / 2480;
+    isolation: isolate;
+    touch-action: none;
+    user-select: none;
+  }
+
+  .laptop-screen {
+    position: absolute;
+    z-index: 1;
+    top: 31.2%;
+    left: 28.4%;
+    width: 45.2%;
+    height: 29.4%;
+    overflow: hidden;
+    clip-path: polygon(1.5% 3%, 100% 0, 98% 96%, 0 100%);
+    transform: rotate(-1.5deg);
+    transform-origin: center;
+  }
+
+  .laptop-screen video {
+    width: 100%;
+    height: 100%;
+    max-height: none;
+    object-fit: cover;
+  }
+
+  .laptop-art,
+  .feedback-art {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    pointer-events: none;
+  }
+
+  .laptop-art {
+    z-index: 2;
+    display: block;
+  }
+
+  .feedback-art {
+    z-index: 3;
+    display: block;
+    opacity: 0;
+    transition: opacity 90ms ease;
+  }
+
+  .feedback-art.is-visible {
+    opacity: 1;
+  }
+
+  .laptop-controls {
+    position: absolute;
+    z-index: 4;
+    inset: 0;
+    display: block;
+  }
+
+  .laptop-key {
+    position: absolute;
+    padding: 0;
+    border: 0;
+    border-radius: 0.35rem;
+    background: transparent;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .laptop-key:focus-visible {
+    outline-offset: 2px;
+  }
+
+  .key-rewind,
+  .key-play-pause,
+  .key-forward,
+  .key-mute,
+  .key-volume-down,
+  .key-volume-up {
+    top: 62.5%;
+    width: 6.3%;
+    height: 10%;
+  }
+
+  .key-rewind {
+    left: 32.3%;
+  }
+
+  .key-play-pause {
+    left: 37.5%;
+  }
+
+  .key-forward {
+    left: 42.7%;
+  }
+
+  .key-mute {
+    left: 47.9%;
+  }
+
+  .key-volume-down {
+    left: 53.1%;
+  }
+
+  .key-volume-up {
+    left: 58.3%;
+  }
+
+  .key-spacebar {
+    top: 74.2%;
+    left: 32.8%;
+    width: 29.5%;
+    height: 10.5%;
+  }
+
+  .swipe-hint {
+    position: absolute;
+    z-index: 5;
+    right: 0;
+    bottom: 1.5%;
+    left: 0;
+    display: block;
+    margin: 0;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-align: center;
+    text-transform: uppercase;
+    pointer-events: none;
+  }
+
+  .laptop-player.is-closed .laptop-screen,
+  .laptop-player.is-closed .laptop-controls,
+  .laptop-player.is-closed .feedback-art {
+    display: none;
   }
 }

@@ -11,12 +11,36 @@
       <p class="eyebrow">VIDEO ART</p>
 
       <section class="video-stage" aria-label="Video art player">
-        <video controls preload="metadata" playsinline>
-          <source
-            src="https://thelongesthumstore.sgp1.cdn.digitaloceanspaces.com/IM-2250/miac.mp4"
-            type="video/mp4">
-        </video>
+        <div class="laptop-player" id="laptop-player">
+          <div class="laptop-screen">
+            <video id="video-player" controls preload="metadata" playsinline>
+              <source
+                src="https://thelongesthumstore.sgp1.cdn.digitaloceanspaces.com/IM-2250/miac.mp4"
+                type="video/mp4">
+            </video>
+          </div>
+
+          <img
+            class="laptop-art"
+            id="laptop-art"
+            src="Buddy-A2/laptop-open.png"
+            alt="Hand-drawn open laptop">
+          <img class="feedback-art" id="feedback-art" alt="">
+
+          <div class="laptop-controls" aria-label="Laptop media controls">
+            <button class="laptop-key key-rewind" type="button" data-action="rewind" aria-label="Rewind 10 seconds"></button>
+            <button class="laptop-key key-play-pause" type="button" data-action="play-pause" aria-label="Play or pause"></button>
+            <button class="laptop-key key-forward" type="button" data-action="forward" aria-label="Forward 10 seconds"></button>
+            <button class="laptop-key key-mute" type="button" data-action="mute" aria-label="Mute or unmute"></button>
+            <button class="laptop-key key-volume-down" type="button" data-action="volume-down" aria-label="Decrease volume"></button>
+            <button class="laptop-key key-volume-up" type="button" data-action="volume-up" aria-label="Increase volume"></button>
+            <button class="laptop-key key-spacebar" type="button" data-action="play-pause" data-feedback="spacebar" aria-label="Spacebar: play or pause"></button>
+          </div>
+
+          <p class="swipe-hint" id="swipe-hint">Swipe down to close</p>
+        </div>
       </section>
     </main>
+    <script src="script.js"></script>
   </body>
 </html>
