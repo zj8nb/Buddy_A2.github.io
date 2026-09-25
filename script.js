@@ -4,6 +4,13 @@ const feedbackArt = document.querySelector("#feedback-art");
 const swipeHint = document.querySelector("#swipe-hint");
 const video = document.querySelector("#video-player");
 const mobileLayout = window.matchMedia("(max-width: 700px)");
+const keyboardSound = new Audio("Buddy-A2/keyboard.wav");
+const laptopCloseSound = new Audio("Buddy-A2/laptop-close.m4a");
+
+keyboardSound.preload = "auto";
+keyboardSound.volume = 0.45;
+laptopCloseSound.preload = "auto";
+laptopCloseSound.volume = 0.65;
 
 const feedbackImages = {
   rewind: "Buddy-A2/rewind-feedback.png",
@@ -19,6 +26,12 @@ let feedbackTimer;
 let touchStartX = 0;
 let touchStartY = 0;
 let laptopIsClosed = false;
+
+function playSound(sound) {
+  sound.pause();
+  sound.currentTime = 0;
+  sound.play().catch(() => {});
+}
 
 function showFeedback(name) {
   const image = feedbackImages[name];
@@ -97,6 +110,7 @@ document.querySelectorAll(".laptop-key").forEach((button) => {
   button.addEventListener("click", () => {
     const action = button.dataset.action;
     const feedback = button.dataset.feedback || action;
+    playSound(keyboardSound);
     runMediaAction(action);
     showFeedback(feedback);
   });
@@ -118,7 +132,13 @@ laptopPlayer.addEventListener(
     const changeY = event.changedTouches[0].clientY - touchStartY;
 
     if (Math.abs(changeY) > 55 && Math.abs(changeY) > Math.abs(changeX)) {
-      setLaptopClosed(changeY > 0);
+      const shouldClose = changeY > 0;
+
+      if (shouldClose && !laptopIsClosed) {
+        playSound(laptopCloseSound);
+      }
+
+      setLaptopClosed(shouldClose);
     }
   },
   { passive: true }
@@ -127,6 +147,7 @@ laptopPlayer.addEventListener(
 document.addEventListener("keydown", (event) => {
   if (event.code === "Space" && event.target === document.body) {
     event.preventDefault();
+    playSound(keyboardSound);
     runMediaAction("play-pause");
     showFeedback("spacebar");
   }
