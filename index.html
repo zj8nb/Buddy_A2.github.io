@@ -13,7 +13,7 @@
       <section class="video-stage" aria-label="Video art player">
         <div class="laptop-player" id="laptop-player">
           <div class="laptop-screen">
-            <video id="video-player" controls preload="metadata" playsinline>
+            <video id="video-player" preload="metadata" playsinline>
               <source
                 src="https://thelongesthumstore.sgp1.cdn.digitaloceanspaces.com/IM-2250/miac.mp4"
                 type="video/mp4">
@@ -37,8 +37,10 @@
             <button class="laptop-key key-spacebar" type="button" data-action="play-pause" data-feedback="spacebar" aria-label="Spacebar: play or pause"></button>
           </div>
 
-          <p class="swipe-hint" id="swipe-hint">Swipe down to close</p>
         </div>
+
+        <p class="swipe-hint" id="swipe-hint">Swipe down to close</p>
+        <button class="laptop-toggle" id="laptop-toggle" type="button">CLOSE</button>
       </section>
     </main>
     <script src="script.js"></script>

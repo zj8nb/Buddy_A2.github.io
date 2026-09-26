@@ -2,8 +2,8 @@ const laptopPlayer = document.querySelector("#laptop-player");
 const laptopArt = document.querySelector("#laptop-art");
 const feedbackArt = document.querySelector("#feedback-art");
 const swipeHint = document.querySelector("#swipe-hint");
+const laptopToggle = document.querySelector("#laptop-toggle");
 const video = document.querySelector("#video-player");
-const mobileLayout = window.matchMedia("(max-width: 700px)");
 const keyboardSound = new Audio("Buddy-A2/keyboard.wav");
 const laptopCloseSound = new Audio("Buddy-A2/laptop-close.m4a");
 
@@ -99,6 +99,8 @@ function setLaptopClosed(shouldClose) {
     : "Buddy-A2/laptop-open.png";
   laptopArt.alt = shouldClose ? "Hand-drawn closed laptop" : "Hand-drawn open laptop";
   swipeHint.textContent = shouldClose ? "Swipe up to open" : "Swipe down to close";
+  laptopToggle.textContent = shouldClose ? "OPEN" : "CLOSE";
+  laptopToggle.setAttribute("aria-label", shouldClose ? "Open laptop" : "Close laptop");
 
   if (shouldClose) {
     video.pause();
@@ -114,6 +116,14 @@ document.querySelectorAll(".laptop-key").forEach((button) => {
     runMediaAction(action);
     showFeedback(feedback);
   });
+});
+
+laptopToggle.addEventListener("click", () => {
+  if (!laptopIsClosed) {
+    playSound(laptopCloseSound);
+  }
+
+  setLaptopClosed(!laptopIsClosed);
 });
 
 laptopPlayer.addEventListener(
@@ -153,13 +163,4 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
-function updateLayout() {
-  video.controls = !mobileLayout.matches;
-
-  if (!mobileLayout.matches) {
-    setLaptopClosed(false);
-  }
-}
-
-mobileLayout.addEventListener("change", updateLayout);
-updateLayout();
+setLaptopClosed(false);
